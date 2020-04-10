@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loginActionCreator } from "../../redux-store/action-creators/loginActionCreator"
+import { loginActionCreator, logoutUser } from "../../redux-store/action-creators/loginActionCreator"
 import {Login} from './Login'
 
 class LoginWrapper extends React.Component {
@@ -12,6 +12,9 @@ class LoginWrapper extends React.Component {
         }
     }
 
+    componentDidMount = ()=>{
+        logoutUser();
+    }
     onChange = (event) => {
         const { value, name } = event.target;
 
@@ -47,7 +50,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    login: (username, password, redirectOnSuccess) => dispatch(loginActionCreator(username, password, redirectOnSuccess))
+    login: (username, password, redirectOnSuccess) => dispatch(loginActionCreator(username, password, redirectOnSuccess)),
+    logout:()=>dispatch(logoutUser()),
 })
 
 // export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

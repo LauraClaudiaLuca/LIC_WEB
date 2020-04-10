@@ -78,13 +78,7 @@ export const logoutFailure = () => {
 }
 
 export const logoutUser = () => {
-    let data = {}
-    let token = localStorage.getItem('token')
-    let config = {
-        headers: {
-            authorization: token.userToken
-        }
-    }
+    localStorage.removeItem("token");
     return dispatch => {
         dispatch(logoutSuccess())
     }
@@ -111,7 +105,7 @@ export const registerActionCreator = (username, password, email, redirectOnSucce
                     password: password,
                     email: email,
                 })
-            .then(res => {
+            .then(() => {
                 dispatch(registerSuccessAction())
                 redirectOnSuccess()
             })

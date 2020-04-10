@@ -53,7 +53,7 @@ class RegisterWrapper extends React.Component {
             errorPassword: this.state.password==="",
             errorConfirmPassword: this.state.confirm !== this.state.password
         },()=>{
-            if(this.state.errorUsername==false && !this.state.errorEmail && !this.state.errorPassword && !this.state.errorConfirmPassword){
+            if(!this.state.errorUsername && !this.state.errorEmail && !this.state.errorPassword && !this.state.errorConfirmPassword){
                 this.props.register(
                     this.state.username,
                     this.state.password,

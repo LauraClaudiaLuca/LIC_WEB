@@ -15,10 +15,7 @@ switch (action.type) {
        }
    case LOGIN_SUCCESS:
        return {
-           isLoggedIn: true,
-           loginError: false,
-           isFetching: false,
-           message: action.message
+           user:{}
        }
    case LOGIN_FAILURE:
        return {
