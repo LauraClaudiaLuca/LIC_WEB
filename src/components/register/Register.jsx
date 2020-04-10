@@ -44,7 +44,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Register = ({
     onChange,
-    onClick
+    onClick,
+    errorUsername,
+    errorUsernameMessage,
+    errorEmail,
+    errorPassword,
+    errorConfirmPassword,
 }
     ) =>{
   const classes = useStyles();
@@ -63,6 +68,8 @@ export const Register = ({
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
+              error={errorUsername}
+              helperText={errorUsername?errorUsernameMessage:""}
               variant="outlined"
               margin="normal"
               required
@@ -75,6 +82,8 @@ export const Register = ({
               onChange={onChange}
             />
             <TextField
+              error={errorPassword}
+              helperText={errorPassword?"Passworld must not be empty.":""}
               variant="outlined"
               margin="normal"
               required
@@ -87,6 +96,8 @@ export const Register = ({
               onChange={onChange}
             />
               <TextField
+              error={errorConfirmPassword}
+              helperText={errorConfirmPassword?"Passwords don't match":""}
               variant="outlined"
               margin="normal"
               required
@@ -99,6 +110,8 @@ export const Register = ({
               onChange={onChange}
             />
               <TextField
+              error={errorEmail}
+              helperText={errorEmail?"Invalid email.":""}
               variant="outlined"
               margin="normal"
               required

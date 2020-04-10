@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 import jwt from 'jwt-decode'
 
 import { LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-         LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from '../action-types/loginActionType'
+         LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, REGISTER_FAILURE,REGISTER_SUCCESS } from '../action-types/loginActionType'
 
 export const loginRequestAction = () => {
     return {
@@ -87,5 +87,50 @@ export const logoutUser = () => {
     }
     return dispatch => {
         dispatch(logoutSuccess())
+    }
+}
+
+export const registerSuccessAction = ()=>{
+    return {
+        type:REGISTER_SUCCESS
+    }
+}
+
+export const registerFailureAction = ()=>{
+    return{
+        type:REGISTER_FAILURE
+    }
+}
+
+export const registerActionCreator = (username, password, email, redirectOnSuccess, actionOnFail) =>{
+    return dispatch => {
+        return axios
+            .post("http://localhost:8080/register",
+                {
+                    username: username,
+                    password: password,
+                    email: email,
+                })
+            .then(res => {
+                dispatch(registerSuccessAction())
+                redirectOnSuccess()
+            })
+            .catch((error) =>{ 
+                // dispatch(loginFailureAction())
+                if (error.response) {
+                    if(error.response.status === 412){
+                        actionOnFail();
+                    }
+                  }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong. Please try again.',
+                        confirmButtonColor: '#db3d44',
+                        confirmButtonText: 'OK'
+                    })
+                }
+            })
     }
 }
