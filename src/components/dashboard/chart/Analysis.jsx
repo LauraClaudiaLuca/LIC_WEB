@@ -23,7 +23,7 @@ class Analysis extends React.Component {
         id="pie"
         dataSource={areas}
         palette="Bright"
-        title="Sentiment Analysis"
+        title={"Sentiment Analysis"}
         onPointClick={this.pointClickHandler}
         onLegendClick={this.legendClickHandler}
         // style={{leftMargin:"10%"}}

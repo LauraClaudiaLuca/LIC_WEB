@@ -97,7 +97,7 @@ function Navigator(props) {
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)} style={{color:"#009be5",fontSize:"30px"}}>
-          i  n  d  i  g   <PieChartOutlinedIcon style={{marginLeft:"7px", marginTop:"2px"}}/>
+          i  n  d  i  g   <PieChartOutlinedIcon style={{marginLeft:"7px", marginTop:"6px"}}/>
         </ListItem>
         {/* <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon className={classes.itemIcon}>

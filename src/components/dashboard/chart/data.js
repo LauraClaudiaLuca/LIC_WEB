@@ -27,9 +27,11 @@
     country: 'Positive',
     area: 20.5
   }, {
-    country: 'Negative',
-    area: 20.5
-  }, {
     country: 'Neutral',
     area: 59
-  }];
+  },
+  {
+    country: 'Negative',
+    area: 20.5
+  }
+];

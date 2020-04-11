@@ -1,0 +1,25 @@
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+    .chip-content {
+        display: none;
+    }
+    /* show it on small screens */
+}
+@media screen and (min-width: 1025px) and (max-width: 2048px) {
+    .chip-content {
+        display: block;
+    }
+    /* hide it elsewhere */
+}
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+    .chip-icon {
+        margin-left: 18px !important ;
+    }
+    /* show it on small screens */
+}
+@media screen and (min-width: 1025px) and (max-width: 2048px) {
+    .chip-icon {
+        margin-left: 5px !important ;
+
+    }
+    /* hide it elsewhere */
+}
