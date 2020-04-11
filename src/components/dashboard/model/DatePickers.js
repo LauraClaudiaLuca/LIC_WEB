@@ -32,7 +32,7 @@ export const DatePickers= ()=> {
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
-            style={{width:"150px"}}
+            style={{width:"130px", marginRight:"10px"}}
           />
           <KeyboardDatePicker
             disableToolbar
@@ -46,7 +46,7 @@ export const DatePickers= ()=> {
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
-            style={{width:"150px"}}
+            style={{width:"130px"}}
           />
       </MuiPickersUtilsProvider>
     );

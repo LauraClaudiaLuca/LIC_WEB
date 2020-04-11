@@ -51,7 +51,7 @@ function Content(props) {
   const { classes, children } = props;
 
   return (
-    <Paper className={classes.paper} style={{maxWidth:"85%"}}>
+    <Paper className={classes.paper} style={{maxWidth:"100%"}}>
       <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
@@ -79,7 +79,7 @@ function Content(props) {
       </AppBar>
       <div className={classes.contentWrapper} >
         <div style={{display: "flex", justifyContent: "center",alignItems: "center"}}>
-          <Card  variant="outlined" style={{maxWidth: "936",width:"85%"}}>
+          <Card  variant="outlined" style={{maxWidth: "936",width:"100%"}}>
             <CardContent>
             <div style={{display: "flex", justifyContent: "center",alignItems: "center"}}>
 
@@ -101,8 +101,6 @@ function Content(props) {
             style={{ backgroundColor: "rgb(112, 201, 47)", color: "white", float:"right" }}/>
           }
         />
-        </div>
-        <div style={{display: "flex", justifyContent: "center",alignItems: "center", marginTop:"15px"}}>
         <CardFeedback
           title={"Awful Headphones"}
           date={"October 21st"}
@@ -115,9 +113,6 @@ function Content(props) {
             style={{ backgroundColor: "rgb(189, 21, 80)", color: "white", float:"right" }}/>
           }
         />
-        </div>
-        <div style={{display: "flex", justifyContent: "center",alignItems: "center", marginTop:"15px"}}>
-
         <CardFeedback
           title={"Alright Headphones"}
           date={"October 21st"}

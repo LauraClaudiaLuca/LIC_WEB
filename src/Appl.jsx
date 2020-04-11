@@ -14,22 +14,6 @@ import ChangePassWrapper from './components/dashboard/ChangePassWrapper';
 import ProfileWrapper from './components/dashboard/ProfileWrapper';
 
 class Appl extends Component {
-
-  // UNSAFE_componentWillMount() {
-  //   let token = localStorage.getItem("token")
-  //   if (token) {
-  //     this.props.markAsLoggedIn(token.firstName)
-  //   }
-  // }
-
-  // componentDidUpdate() {
-  //   let token = localStorage.getItem("token")
-  //   if (this.props.isLoggedIn && token !== JSON.stringify(this.props.user)) {
-  //     this.props.getUserData(JSON.parse(token))
-  //   }
-  // }
-
-
   loggedInRoutes() {
     let { user } = this.props
     let {isLoggedIn} = user!==null
@@ -70,10 +54,10 @@ class Appl extends Component {
     let routes = this.props.user!==null ? this.loggedInRoutes() : this.loggedOutRoutes()
 
     return (
+
       <BrowserRouter>
         {routes}
       </BrowserRouter>
-
     )
   }
 }

@@ -56,7 +56,6 @@ export const Register = ({
 
   return (
     <Grid container component="main" className={classes.root}>
-      <CssBaseline />
       <Grid item xs={false} sm={5} md={8} className={classes.image} />
       <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>

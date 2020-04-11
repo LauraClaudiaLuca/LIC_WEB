@@ -41,9 +41,9 @@ const categories = [
   {
     id: 'User Settings',
     children: [
-      { id: 'Token', icon: <VpnKeyOutlinedIcon />, link:"/token" },
+      // { id: 'Token', icon: <VpnKeyOutlinedIcon />, link:"/token" },
       { id: 'Profile', icon: <AccountCircleOutlinedIcon />, link:"/profile"},
-      { id: 'Change password', icon: <LockOutlinedIcon />, link:"/changepassword" },
+      // { id: 'Change password', icon: <LockOutlinedIcon />, link:"/changepassword" },
       { id: 'Logout', icon: <ExitToAppOutlinedIcon />, link:"/logout" }
     ],
   },

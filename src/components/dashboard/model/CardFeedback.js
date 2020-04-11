@@ -17,7 +17,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 const useStyles = makeStyles(theme => ({
   root: {
     // maxWidth: 1500,
-    width:"85%"
+    width:"80%"
   },
   media: {
     height: 0,
@@ -55,7 +55,7 @@ export const CardFeedback = (
   };
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <Card className={classes.root} variant="outlined" style={{alignSelf: "flex-start", margin:"10px"}}>
       <CardHeader
         title={
             <div>
@@ -68,18 +68,18 @@ export const CardFeedback = (
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {!expanded
-            ? content.substring(0,1000)+"..."
+            ? content.substring(0,150)+"..."
             : content
           }
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="likes" disabled style={{color:"grey"}}>
           <FavoriteIcon /> {likes}
         </IconButton>
         <Tooltip
           title={!expanded ? "Show content" : "Hide content"}
-          placement="right"
+          placement="bottom"
         >
           <IconButton
             className={clsx(classes.expand, {
