@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
     baseURL: 'http://localhost:8080/',
     headers: {
         post: {
@@ -22,4 +22,3 @@ axiosInstance.interceptors.request.use(function (config) {
     return Promise.reject(err);
 });
 
-export default axiosInstance;

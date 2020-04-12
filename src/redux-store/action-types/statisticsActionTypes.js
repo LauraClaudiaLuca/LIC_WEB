@@ -1,0 +1,2 @@
+export const STATISTICS_SUCCESS="@@statistics/STATISTICS_SUCCESS"
+export const STATISTICS_FAILURE="@@statistics/STATISTICS_FAILURE"

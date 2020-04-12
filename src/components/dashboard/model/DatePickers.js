@@ -8,15 +8,19 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 
-export const DatePickers= ()=> {
-    const [selectedDate, setSelectedDate] = React.useState();
-    const [selectedDate2, setSelectedDate2] = React.useState();
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
-    };
-    const handleDateChange2 = (date) => {
-        setSelectedDate2(date);
-      };
+export const DatePickers= ({
+    dateFrom,
+    dateTo,
+    onChangeDate,
+})=> {
+    // const [selectedDate, setSelectedDate] = React.useState();
+    // const [selectedDate2, setSelectedDate2] = React.useState();
+    // const handleDateChange = (date) => {
+    //   setSelectedDate(date);
+    // };
+    // const handleDateChange2 = (date) => {
+    //     setSelectedDate2(date);
+    //   };
   
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -27,8 +31,8 @@ export const DatePickers= ()=> {
             id="date-picker-dialog"
             label="From"
             format="MM/dd/yyyy"
-            value={selectedDate}
-            onChange={handleDateChange}
+            value={dateFrom}
+            onChange={(date)=>onChangeDate(date,1)}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
@@ -41,8 +45,8 @@ export const DatePickers= ()=> {
             id="date-picker-dialog"
             label="To"
             format="MM/dd/yyyy"
-            value={selectedDate2}
-            onChange={handleDateChange2}
+            value={dateTo}
+            onChange={(date)=>onChangeDate(date,2)}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}

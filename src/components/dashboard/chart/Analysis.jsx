@@ -6,13 +6,12 @@ import PieChart, {
   Size,
   Export
 } from 'devextreme-react/pie-chart';
-
-import { areas } from './data.js';
-
 class Analysis extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      data: props.data,
+  }
     this.pointClickHandler = this.pointClickHandler.bind(this);
     this.legendClickHandler = this.legendClickHandler.bind(this);
   }
@@ -21,17 +20,15 @@ class Analysis extends React.Component {
     return (
       <PieChart
         id="pie"
-        dataSource={areas}
+        dataSource={this.state.data}
         palette="Bright"
         title={"Sentiment Analysis"}
         onPointClick={this.pointClickHandler}
         onLegendClick={this.legendClickHandler}
-        // style={{leftMargin:"10%"}}
-
       >
         <Series
-          argumentField="country"
-          valueField="area"
+          argumentField="sentiment"
+          valueField="value"
         >
           <Label visible={true}>
             <Connector visible={true} width={1} />
@@ -39,7 +36,7 @@ class Analysis extends React.Component {
         </Series>
 
         <Size width={500} />
-        {/* <Export enabled={true} /> */}
+        <Export enabled={true} />
       </PieChart>
     );
   }
