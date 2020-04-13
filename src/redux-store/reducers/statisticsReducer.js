@@ -5,20 +5,18 @@ const initialState = {
 }
 
 const statisticsReducer = (state = initialState, action) => {
+    const newState = { ...state };
     switch (action.type) {
         case STATISTICS_SUCCESS:
-            return {
-                ...state,
-                statistics: action.data
-            }
+                newState.statistics = action.data
+                break;
         case STATISTICS_FAILURE:
-            return {
-                statistics: undefined
-            }
+            newState.statistics = action.data
+            break;
         default:
             break;
     }
-    return state;
+    return newState;
 }
 
 export default statisticsReducer

@@ -3,6 +3,7 @@ import Paperbase from "./model/Paperbase";
 import Content from './model/Content';
 import { connect } from 'react-redux'
 import {statisticsActionCreator} from '../../redux-store/action-creators/statisticsActionCreator'
+import NothingFoundContent from './model/NothingFoundContent';
 
 const statis = {
     positive:20.5,
@@ -32,13 +33,14 @@ class OneYearWrapper extends React.Component {
         super(props)
         this.state = {
             productCode: "",
+            stats:props.stats,
+            dateFrom: new Date(new Date().setFullYear(new Date().getFullYear() - 1)).valueOf(),
+            dateTo:new Date().valueOf(),
         }
     }
 
     componentDidMount(){
-        const oneyearago = new Date(new Date().setFullYear(new Date().getFullYear() - 1))
-        const now = new Date();
-        this.props.statistics(undefined,oneyearago,now)
+        this.props.statistics(null,this.state.dateFrom,this.state.dateTo)
     }
     onChange = (event) => {
         const { value, name } = event.target;
@@ -52,18 +54,42 @@ class OneYearWrapper extends React.Component {
         alert(this.state.productCode)
     }
 
+    componentDidUpdate(prevProps) {
+        const { stats: prevStats } = prevProps;
+        const { stats: nextStats } = this.props;
+        if (prevStats !== nextStats){
+            this.setState({
+                stats:nextStats
+            })
+        }
+
+    }
     render() {
-        return (
+        if(this.state.stats!==undefined){
+            return (
+                <Paperbase child={
+                    <Content
+                        onChange={this.onChange}
+                        onClick={this.search}
+                        statistics={this.state.stats}
+                        productCode={this.state.productCode}
+                    />
+                } currentTab={"1 year ago"}>
+                </Paperbase>
+            )
+        }
+        else {
+            return (
             <Paperbase child={
-                <Content
-                    onChange={this.onChange}
-                    onClick={this.search}
-                    statistics={statis}
-                    productCode={this.state.productCode}
+                <NothingFoundContent
+                onChange={this.onChange}
+                onClick={this.search}
+                productCode={this.state.productCode}
                 />
             } currentTab={"1 year ago"}>
-            </Paperbase>
-        )
+            </Paperbase>)
+        }
+
     }
 }
 const mapStateToProps = state => ({

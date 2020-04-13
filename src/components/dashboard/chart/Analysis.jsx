@@ -16,6 +16,17 @@ class Analysis extends React.Component {
     this.legendClickHandler = this.legendClickHandler.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    console.log("hehehehee")
+    const { data: prevData} = prevProps;
+    const { data: nextData } = this.props;
+    if (prevData !== nextData){
+        this.setState({
+            data:nextData
+        })
+    }
+
+}
   render() {
     return (
       <PieChart

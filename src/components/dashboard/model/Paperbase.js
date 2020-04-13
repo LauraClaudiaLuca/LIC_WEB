@@ -11,11 +11,11 @@ import Header from './Header';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
+      {'Powered by INDIGO - Sentiment Analysis Tool'}
+      {/* <Link color="inherit" href="https://material-ui.com/">
+        INDIGO - Sentiment Analysis Tool
+      </Link>{' '} */}
+      {/* {new Date().getFullYear()} */}
       {'.'}
     </Typography>
   );
@@ -162,11 +162,11 @@ const styles = {
 
 function Paperbase(props) {
   const { classes,child, currentTab } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  // const handleDrawerToggle = () => {
+  //   setMobileOpen(!mobileOpen);
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -177,8 +177,8 @@ function Paperbase(props) {
             <Navigator
               PaperProps={{ style: { width: drawerWidth } }}
               variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
+              open={true}
+              // onClose={handleDrawerToggle}
             />
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -186,12 +186,12 @@ function Paperbase(props) {
           </Hidden>
         </nav>
         <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} current={currentTab} />
+          <Header current={currentTab} />
           <main className={classes.main} >
             {child}
           </main>
           <footer className={classes.footer}>
-            {/* <Copyright /> */}
+            <Copyright />
           </footer>
         </div>
       </div>

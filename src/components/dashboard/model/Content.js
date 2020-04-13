@@ -60,7 +60,6 @@ export const Content = ({
 
   return (
     <Paper className={classes.paper} style={{maxWidth:"100%"}}>
-    {console.log(statistics)}
       <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
@@ -116,7 +115,7 @@ export const Content = ({
         <div style={{display: "flex", justifyContent: "center",alignItems: "center",marginTop:"15px"}}>
         <CardFeedback
           title={statistics.mostPositive.title}
-          date={statistics.mostPositive.createdAt}
+          date={new Date(statistics.mostPositive.createdAt).toLocaleDateString()}
           content={statistics.mostPositive.content}
           likes={statistics.mostPositive.likes}
           chip={        
@@ -128,7 +127,7 @@ export const Content = ({
         />
         <CardFeedback
           title={statistics.mostNegative.title}
-          date={statistics.mostNegative.createdAt}
+          date={new Date(statistics.mostNegative.createdAt).toLocaleDateString()}
           content={statistics.mostNegative.content}
           likes={statistics.mostNegative.likes}
           chip={        
@@ -140,7 +139,7 @@ export const Content = ({
         />
         <CardFeedback
           title={statistics.mostLiked.title}
-          date={statistics.mostLiked.createdAt}
+          date={new Date(statistics.mostLiked.createdAt).toLocaleDateString()}
           content={statistics.mostLiked.content}
           likes={statistics.mostLiked.likes}
           chip={        

@@ -68,7 +68,7 @@ export const CardFeedback = (
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {!expanded
-            ? content.substring(0,150)+"..."
+            ? content.substring(0,50)+"..."
             : content
           }
         </Typography>

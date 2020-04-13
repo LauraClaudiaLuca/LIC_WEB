@@ -3,6 +3,7 @@ import Paperbase from "./model/Paperbase";
 import Content from './model/Content';
 import { connect } from 'react-redux'
 import { statisticsActionCreator } from '../../redux-store/action-creators/statisticsActionCreator'
+import NothingFoundContent from './model/NothingFoundContent';
 
 const statis = {
     positive: 20.5,
@@ -32,12 +33,23 @@ class ThirtyDaysWrapper extends React.Component {
         super(props)
         this.state = {
             productCode: "",
+            stats:props.stats,
+            dateFrom:new Date().setDate((new Date().getDate() - 30)),
+            dateTo:new Date().valueOf(),
         }
     }
     componentDidMount() {
-        const thirtydaysago = new Date(new Date().getDate() - 30)
-        const now = new Date();
-        this.props.statistics(undefined, thirtydaysago, now)
+        this.props.statistics(null, this.state.dateFrom, this.state.dateTo)
+    }
+    componentDidUpdate(prevProps) {
+        const { stats: prevStats } = prevProps;
+        const { stats: nextStats } = this.props;
+        if (prevStats !== nextStats){
+            this.setState({
+                stats:nextStats
+            })
+        }
+
     }
     onChange = (event) => {
         const { value, name } = event.target;
@@ -48,21 +60,34 @@ class ThirtyDaysWrapper extends React.Component {
     }
 
     search = () => {
-        alert(this.state.productCode)
+        this.props.statistics(this.state.productCode === "" ? null : this.state.productCode, this.state.dateFrom, this.state.dateTo)
     }
-
     render() {
-        return (
-            <Paperbase child={
-                <Content
-                    onChange={this.onChange}
-                    onClick={this.search}
-                    statistics={statis}
-                    productCode={this.state.productCode}
-                />
-            } currentTab={"1 year ago"}>
-            </Paperbase>
-        )
+        if (this.state.stats !== undefined) {
+            return (
+                <Paperbase child={
+                    <Content
+                        onChange={this.onChange}
+                        onClick={this.search}
+                        statistics={this.state.stats}
+                        productCode={this.state.productCode}
+                    />
+                } currentTab={"30 days ago"}>
+                </Paperbase>
+            )
+        }
+        else {
+            return (
+                <Paperbase child={
+                    <NothingFoundContent
+                        onChange={this.onChange}
+                        onClick={this.search}
+                        productCode={this.state.productCode}
+                    />
+                } currentTab={"30 days ago"}>
+                </Paperbase>)
+        }
+
     }
 }
 const mapStateToProps = state => ({
