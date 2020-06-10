@@ -47,11 +47,15 @@ class OneYearWrapper extends React.Component {
 
         this.setState({
             [name]: value
+        },()=>{
+            if(this.state.productCode==""){
+                this.search();
+            }
         })
     }
 
     search = () => {
-        alert(this.state.productCode)
+        this.props.statistics(this.state.productCode === "" ? null : this.state.productCode, this.state.dateFrom, this.state.dateTo)
     }
 
     componentDidUpdate(prevProps) {

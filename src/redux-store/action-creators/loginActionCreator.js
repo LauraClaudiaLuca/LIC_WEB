@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 import jwt from 'jwt-decode'
 
 import { LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-         LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, REGISTER_FAILURE,REGISTER_SUCCESS } from '../action-types/loginActionType'
+         LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE, REGISTER_FAILURE,REGISTER_SUCCESS, GET_USER_SUCCESS, UPDATE_PASSWORD_SUCCESS } from '../action-types/loginActionType'
 
 export const loginRequestAction = () => {
     return {
@@ -24,10 +24,10 @@ export const loginFailureAction = () => {
     }
 }
 
-export const loginSuccessAction = user => {
+export const loginSuccessAction = (user) => {
     return {
         type: LOGIN_SUCCESS,
-        user:user
+        data:user
     }
 }
 
@@ -125,6 +125,81 @@ export const registerActionCreator = (username, password, email, redirectOnSucce
                         confirmButtonText: 'OK'
                     })
                 }
+            })
+    }
+}
+
+export const getUserSuccessAction = (user) => {
+    return {
+        type: GET_USER_SUCCESS,
+        data:user
+    }
+}
+
+export const getUserActionCreator = (username) => {
+    return dispatch => {
+        return axios
+            .get("http://localhost:8080/get-user/"+username)
+            .then((response) => {
+                dispatch(getUserSuccessAction(response.data))
+            })
+            .catch((error) => {
+                if (error.response) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong. Please try again.',
+                            confirmButtonColor: '#db3d44',
+                            confirmButtonText: 'OK'
+                        })
+                }
+            })
+    }
+}
+
+export const updatePasswordActionCreator = (username,password,redirectOnSuccess)=>{
+    return dispatch => {
+        return axios
+            .put("http://localhost:8080/update-password",
+                {
+                    username: username,
+                    password: password,
+                })
+            .then(() => {
+                redirectOnSuccess()
+            })
+            .catch((error) =>{ 
+            
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong. Please try again.',
+                        confirmButtonColor: '#db3d44',
+                        confirmButtonText: 'OK'
+                    })
+            })
+    }
+}
+
+export const updateEmailActionCreator = (username,email,redirectOnSuccess)=>{
+    return dispatch => {
+        return axios
+            .put("http://localhost:8080/update-email",
+                {
+                    username: username,
+                    email: email,
+                })
+            .then(() => {
+                redirectOnSuccess()
+            })
+            .catch((error) =>{ 
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong. Please try again.',
+                        confirmButtonColor: '#db3d44',
+                        confirmButtonText: 'OK'
+                    })
             })
     }
 }

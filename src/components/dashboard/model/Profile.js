@@ -7,13 +7,14 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import AlternateEmailOutlinedIcon from '@material-ui/icons/AlternateEmailOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import theme from "../../../theme"
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import AlternateEmailOutlinedIcon from '@material-ui/icons/AlternateEmailOutlined';
 import { AlertDialogSlide } from './AlertDialogSlide';
+import { FormDialog } from './FormDialog';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     form: {
-        width: '70%', // Fix IE 11 issue.
+        width: '100%', // Fix IE 11 issue.
         // marginTop: theme.spacing(1),
     },
     submit: {
@@ -48,8 +49,10 @@ export const Profile = (
     {
         username,
         email,
-        numberOfStoredFeedback,
         token,
+        saveEmail,
+        savePassword,
+        onChange
     }
 ) => {
 
@@ -96,42 +99,31 @@ export const Profile = (
                                 }}
                                 value={email}
                             />
-                            <Typography variant="button">
-                                <b>Number of feedback entities currently stocked</b>
-                            </Typography>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                name="nrFeedback"
-                                id="nrFeedback"
-                                color="primary"
-                                fullWidth
-                                type="number"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                                value={numberOfStoredFeedback}
-                            />
                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
                                 <AlertDialogSlide token={token}/>
-                                <Button
-                                    type="button"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                >
-                                    <LockOpenOutlinedIcon /> <b>Change password</b>
-                                </Button>
-                                <Button
-                                    type="button"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                >
-                                    <AlternateEmailOutlinedIcon /> <b>Change email</b>
-
-                                </Button>
+                                <FormDialog
+                                    text = {"Please enter the new password below."}
+                                    label="New password"
+                                    type="password"
+                                    name="password"
+                                    title="Change password"
+                                    onSave={savePassword}
+                                    onChange={onChange}
+                                    icon={<LockOpenOutlinedIcon />}
+                                    btntext={"Change password"}
+                                />
+                                <FormDialog
+                                    text = {"Please enter the new email below."}
+                                    label="Email"
+                                    type="email"
+                                    name="email"
+                                    title="Change email"
+                                    onSave={saveEmail}
+                                    onChange={onChange}
+                                    icon={<AlternateEmailOutlinedIcon />}
+                                    btntext={"Change email"}
+                                />
 
                             </div>
                         </form>

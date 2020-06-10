@@ -16,7 +16,6 @@ export const statisticsFailure = () => {
     }
 }
 export const statisticsActionCreator = (productCode, dateFrom, dateTo) => {
-    console.log("--------", productCode, dateFrom, dateTo)
     return dispatch => {
         return axiosInstance
             .get("http://localhost:8080/tenant/statistics", {
