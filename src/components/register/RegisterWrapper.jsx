@@ -32,7 +32,6 @@ class RegisterWrapper extends React.Component {
     }
 
     actionOnFail = () =>{
-        console.log("here")
         this.setState({
             error:true,
             errorMessage:"This username already exists. Please choose another."

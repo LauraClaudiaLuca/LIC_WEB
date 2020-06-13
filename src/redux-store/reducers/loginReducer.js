@@ -17,7 +17,6 @@ const loginReducer = (state = initialState, action) => {
         default:
             break;
     }
-    console.log(newState)
     return newState;
 }
 export default loginReducer

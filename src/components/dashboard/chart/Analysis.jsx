@@ -17,7 +17,6 @@ class Analysis extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("hehehehee")
     const { data: prevData} = prevProps;
     const { data: nextData } = this.props;
     if (prevData !== nextData){
