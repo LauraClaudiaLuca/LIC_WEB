@@ -75,7 +75,7 @@ export const CardFeedback = (
       <CardHeader
         title={
             <div>
-            {title}
+            {title.length >8? title.substring(0,8)+"...":title}
             {chip}
             </div>
         }

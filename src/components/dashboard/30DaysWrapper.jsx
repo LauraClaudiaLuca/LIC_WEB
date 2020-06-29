@@ -56,6 +56,10 @@ class ThirtyDaysWrapper extends React.Component {
 
         this.setState({
             [name]: value
+        },()=>{
+            if(this.state.productCode==""){
+                this.search();
+            }
         })
     }
 
